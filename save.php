@@ -16,17 +16,18 @@ fputcsv($handle_antworten, array(md5($userid), $fragen));
 
 //bereich um zu überprüfen, ob fragen von benutzer bereits beantwortet
 $file = "benutzer.tmp";
+$handle_benutzer = fopen ($file, "r+");
 $handle_benutzer_tmp = fopen ($file, "r+");
 while($row = fgetcsv($handle_benutzer_tmp)) {
 		if( $row[0] == $userid){
 			$row[] = "bewertet";
 			$row[] = $score;
-			fputcsv($handle_benutzer_tmp, array($userid, $score));
+			fputcsv($handle_benutzer_tmp, $row[]);
 		}
 }
 
-$handle_benutzer = fopen ($file, "r+");
-rename($handle_benutzer, "benutzer.csv");
+
+rename("benutzer.tmp", "benutzer.csv");
 
 //fclose($benutzer_handle);
 
