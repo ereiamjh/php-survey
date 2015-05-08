@@ -10,20 +10,23 @@ if (isset($_SESSION["logged_in"])){
 
 $fragen = $_POST["frage"];
 $score = array_sum($fragen);
-$handle = fopen("antworten.csv", "a");
-fputcsv($handle, array(md5($userid), $fragen));
+$handle_antworten = fopen("antworten.csv", "a");
+fputcsv($handle_antworten, array(md5($userid), $fragen));
 
 
 //bereich um zu überprüfen, ob fragen von benutzer bereits beantwortet
-$file = "benutzer.csv";
-$handle = fopen ($file, "r+");
-while($row = fgetcsv($handle)) {
+$file = "benutzer.tmp";
+$handle_benutzer_tmp = fopen ($file, "r+");
+while($row = fgetcsv($handle_benutzer_tmp)) {
 		if( $row[0] == $userid){
-			$row[] = bewertet;
+			$row[] = "bewertet";
 			$row[] = $score;
-			fputcsv($handle, array($userid, $score));
+			fputcsv($handle_benutzer_tmp, array($userid, $score));
 		}
 }
+
+$handle_benutzer = fopen ($file, "r+");
+rename($handle_benutzer, "benutzer.csv");
 
 //fclose($benutzer_handle);
 
