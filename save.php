@@ -6,6 +6,13 @@ if (isset($_SESSION["logged_in"])){
 	exit();
 }
 
+$handle_benutzer_check = fopen ("benutzer.csv", "r");
+while($row = fgetcsv($handle_benutzer_check)) {
+		if( $row[0] == $userid AND $row[6] = "bewertet"){
+			exit;
+		} else {
+			break;
+		}
 
 
 $fragen = $_POST["frage"];
@@ -14,11 +21,11 @@ $handle_antworten = fopen("antworten.csv", "a");
 fputcsv($handle_antworten, array(md5($userid), $fragen));
 
 
-//bereich um zu überprüfen, ob fragen von benutzer bereits beantwortet
+//fügt dem benutzer "bewertet" und die summe der antworten hinzu
 $file = "benutzer.tmp";
-$handle_benutzer = fopen ($file, "r+");
-$handle_benutzer_tmp = fopen ($file, "r+");
-while($row = fgetcsv($handle_benutzer_tmp)) {
+$handle_benutzer = fopen ("benutzer.csv", "r");
+$handle_benutzer_tmp = fopen ("benutzer.tmp", "w");
+while($row = fgetcsv($handle_benutzer)) {
 		if( $row[0] == $userid){
 			$row[] = "bewertet";
 			$row[] = $score;
