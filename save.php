@@ -22,8 +22,8 @@ while($row = fgetcsv($handle_benutzer_tmp)) {
 		if( $row[0] == $userid){
 			$row[] = "bewertet";
 			$row[] = $score;
-			fputcsv($handle_benutzer_tmp, $row[]);
 		}
+fputcsv($handle_benutzer_tmp, $row);
 }
 
 
