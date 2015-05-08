@@ -10,13 +10,8 @@ if (isset($_SESSION["logged_in"])){
 
 $fragen = $_POST["frage"];
 $score = array_sum($fragen);
-
 $handle = fopen("antworten.csv", "a");
-//wenn nicht geht implode von fragen hier
 fputcsv($handle, array(md5($userid), $fragen));
-
-var_dump($antworten);
-
 
 
 //bereich um zu überprüfen, ob fragen von benutzer bereits beantwortet
