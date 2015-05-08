@@ -20,7 +20,7 @@ while ($row = fgetcsv($handle_benutzer_check)) {
 $fragen = $_POST["frage"];
 $score = array_sum($fragen);
 $handle_antworten = fopen("antworten.csv", "a");
-fputcsv($handle_antworten, array(md5($userid), $fragen));
+fputcsv($handle_antworten, array(md5($userid, $fragen));
 
 
 //fügt dem benutzer "bewertet" und die summe der antworten hinzu
