@@ -9,10 +9,10 @@ if ( isset($_POST["userid"])){
 	$file = "benutzer.csv";
 	$handle = fopen ($file, "a+");
 	while($row = fgetcsv($handle)) {
-	if( $row[0] == $userid){
-		header( 'Location: login.php' );
-		exit();
-	}
+		if( $row[0] == $userid){
+			header( 'Location: login.php' );
+			exit();
+		}
 	}
 	fputcsv($handle, array($userid, md5($passid), $mail, $firstname, $lastname));
 	fclose($handle);
