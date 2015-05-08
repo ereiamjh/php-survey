@@ -12,12 +12,10 @@ $fragen = $_POST["frage"];
 $score = array_sum($fragen);
 
 $handle = fopen("antworten.csv", "a");
-fwrite($handle, $antworten);
 //wenn nicht geht implode von fragen hier
 fputcsv($handle, array(md5($userid), $fragen));
 
 var_dump($antworten);
-
 
 
 
@@ -28,12 +26,9 @@ while($row = fgetcsv($handle)) {
 		if( $row[0] == $userid){
 			$row[] = bewertet;
 			$row[] = $score;
+			fputcsv($handle, array($userid, $score));
 		}
 }
-
-
-fputcsv($handle, array($userid, $score));
-
 
 //fclose($benutzer_handle);
 
