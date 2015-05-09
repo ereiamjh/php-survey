@@ -13,7 +13,7 @@ $handle = fopen ($file, "r");
 <html lang="en">
     <head>
         <meta charset="utf-8">
-            <title>Anmeldung</title>
+            <title>Formular</title>
             <meta name="keywords" content="gibb, JavaScript Form Validation, registration form" />
             <meta name="description" content="Dieses Dokument ist Teil von Modul 133" />
             <link rel='stylesheet' href='style.css' type='text/css' />
